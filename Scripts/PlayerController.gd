@@ -6,12 +6,16 @@ export var speed   : float = 5
 export var gravity : float = .1
 
 onready var camera : Camera2D = get_node("Camera")
+onready var sprite : Sprite   = get_node("Sprite")
 
 signal switch
 
 var dragState
+
 var last_collision
 var can_jump = true
+
+var collision
 
 func _ready():
 	reset()
@@ -26,13 +30,13 @@ func _process(_delta):
 
 	direction.y = clamp(direction.y,-5,5)
 	if direction.x < 0:
-		$Sprite.set_flip_h(true)
+		sprite.set_flip_h(true)
 	elif direction.x > 0:
-		$Sprite.set_flip_h(false)
+		sprite.set_flip_h(false)
 
 	
 func _physics_process(_delta):
-	var collision = move_and_collide(direction * speed)
+	collision = move_and_collide(direction * speed)
 	if collision:
 		can_jump = true
 		if last_collision != collision.collider_id:
