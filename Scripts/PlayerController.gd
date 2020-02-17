@@ -9,6 +9,7 @@ onready var camera : Camera2D = get_node("Camera")
 onready var sprite : Sprite   = get_node("Sprite")
 
 signal switch
+signal reset
 
 var dragState
 
@@ -24,6 +25,8 @@ func _ready():
 func _process(_delta):
 	if position.y > 4000:
 		reset()
+		get_node('..').active = 'red'
+		emit_signal('reset')
 	if dragState and can_jump:
 			can_jump = false
 			direction.x = get_local_mouse_position().normalized().x * speed
