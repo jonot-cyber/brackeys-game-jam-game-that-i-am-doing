@@ -42,5 +42,4 @@ func _input(event):
 		else:
 			dragState = false
 	elif event is InputEventKey and event.pressed and event.scancode == KEY_SPACE:
-		print('space')
 		emit_signal('switch')
