@@ -8,6 +8,8 @@ export var gravity : float = .1
 onready var camera : Camera2D = get_node("Camera")
 onready var sprite : Sprite   = get_node("Sprite")
 
+onready var shake  := camera.get_node("ScreenShake")
+
 onready var jump   : AudioStreamPlayer2D = get_node("Jump")
 onready var land   : AudioStreamPlayer2D = get_node("Land")
 
@@ -32,6 +34,7 @@ func _process(_delta):
 		emit_signal('reset')
 	if dragState and can_jump:
 		jump.play()
+		shake.start(0.1, 7.5, 8)
 		can_jump = false
 		direction.x = get_local_mouse_position().normalized().x * speed
 		direction.y = get_local_mouse_position().normalized().y * speed
@@ -50,6 +53,7 @@ func _physics_process(_delta):
 		can_jump = true
 		if last_collision != collision.collider_id:
 			land.play()
+			shake.start(0.2, 15, 16)
 			direction = Vector2(0,0)
 		last_collision = collision.collider_id
 	else:

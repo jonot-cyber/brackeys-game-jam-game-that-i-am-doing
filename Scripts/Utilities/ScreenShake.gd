@@ -1,8 +1,8 @@
 extends Node
 
-export var duration = 0.2
-export var frequency = 15
-export var amplitude = 16
+var duration = 0.2
+var frequency = 15
+var amplitude = 16
 
 var priority = 0
 
@@ -16,7 +16,10 @@ onready var camera = get_parent()
 
 signal start
 
-func start():
+func start(duration, frequency, amplitude):
+	self.duration = duration
+	self.frequency = frequency
+	self.amplitude = amplitude
 	nodeDuration.wait_time = duration
 	nodeFrequency.wait_time = 1 / float(frequency)
 	nodeDuration.start()
