@@ -10,13 +10,16 @@ onready var camera : Camera2D = get_node("Camera")
 signal switch
 
 var dragState
+var last_collision
+var can_jump = true
 
 func _ready():
 	reset()
 	camera.current = true
 
 func _process(_delta):
-	if dragState and direction.y == 5:
+	if dragState and can_jump:
+			can_jump = false
 			direction.x = get_local_mouse_position().normalized().x * speed
 			direction.y = get_local_mouse_position().normalized().y * speed
 	direction.y += gravity
@@ -30,6 +33,13 @@ func _process(_delta):
 	
 func _physics_process(_delta):
 	var collision = move_and_collide(direction * speed)
+	if collision:
+		can_jump = true
+		if last_collision != collision.collider_id:
+			direction = Vector2(0,0)
+		last_collision = collision.collider_id
+	else:
+		last_collision = 0
 
 func reset():
 	direction = Vector2(0,0)
