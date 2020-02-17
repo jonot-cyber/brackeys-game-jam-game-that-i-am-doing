@@ -2,10 +2,12 @@ extends KinematicBody2D
 
 var direction      : Vector2 = Vector2(0,0)
 
-export var speed   : float = 10
+export var speed   : float = 5
 export var gravity : float = .1
 
 onready var camera : Camera2D = get_node("Camera")
+
+signal switch
 
 var dragState
 
@@ -19,7 +21,7 @@ func _process(_delta):
 			direction.y = get_local_mouse_position().normalized().y * speed
 	direction.y += gravity
 
-	direction.y = clamp(direction.y,0,5)
+	direction.y = clamp(direction.y,-5,5)
 	if direction.x < 0:
 		$Sprite.set_flip_h(true)
 	elif direction.x > 0:
@@ -39,3 +41,6 @@ func _input(event):
 			dragState = true
 		else:
 			dragState = false
+	elif event is InputEventKey and event.pressed and event.scancode == KEY_SPACE:
+		print('space')
+		emit_signal('switch')
