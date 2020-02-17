@@ -22,6 +22,8 @@ func _ready():
 	camera.current = true
 
 func _process(_delta):
+	if position.y > 4000:
+		reset()
 	if dragState and can_jump:
 			can_jump = false
 			direction.x = get_local_mouse_position().normalized().x * speed
@@ -43,6 +45,7 @@ func _physics_process(_delta):
 			direction = Vector2(0,0)
 		last_collision = collision.collider_id
 	else:
+		can_jump = false
 		last_collision = 0
 
 func reset():
