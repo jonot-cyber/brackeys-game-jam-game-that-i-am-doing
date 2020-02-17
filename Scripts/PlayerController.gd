@@ -28,7 +28,7 @@ func _ready():
 	camera.current = true
 
 func _process(_delta):
-	if position.y > 4000:
+	if position.y > 3000:
 		reset()
 		get_node('..').active = 'red'
 		emit_signal('reset')
@@ -40,7 +40,7 @@ func _process(_delta):
 		direction.y = get_local_mouse_position().normalized().y * speed
 	direction.y += gravity
 
-	direction.y = clamp(direction.y,-5,5)
+	direction.y = clamp(direction.y,-50,5)
 	if direction.x < 0:
 		sprite.set_flip_h(true)
 	elif direction.x > 0:
