@@ -29,7 +29,7 @@ func _process(_delta):
 
 	
 func _physics_process(_delta):
-	move_and_collide(direction * speed)
+	var collision = move_and_collide(direction * speed)
 
 func reset():
 	direction = Vector2(0,0)
