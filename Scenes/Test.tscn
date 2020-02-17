@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tileset.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Tiles.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Objects/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Goal.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 15.9026, 0, 16, 0.000629425, 0, 16, 0 )
@@ -101,10 +100,5 @@ script = ExtResource( 3 )
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 9, 0 )
-
-[node name="Goal" type="Sprite" parent="."]
-position = Vector2( 6976, 448 )
-scale = Vector2( 8, 8 )
-texture = ExtResource( 5 )
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
