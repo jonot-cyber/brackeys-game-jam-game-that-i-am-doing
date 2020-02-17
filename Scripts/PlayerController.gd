@@ -1,13 +1,12 @@
 extends KinematicBody2D
 
-var direction = Vector2(0,0)
+var direction      : Vector2 = Vector2(0,0)
 
 export var speed   : float = 5
 export var gravity : float = .1
 
-onready var camera = get_node("Camera")
+onready var camera : Camera2D = get_node("Camera")
 
-var mousePosition
 var dragState
 
 func _ready():
