@@ -106,8 +106,23 @@ scale = Vector2( 1e+07, 1e+06 )
 z_index = -2
 texture = ExtResource( 7 )
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+scale_amount = 34.26
+
+[node name="Respawn" type="Timer" parent="Player"]
+one_shot = true
+
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 9, 0 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
+[connection signal="timeout" from="Player/Respawn" to="Player" method="_on_Respawn_timeout"]

@@ -28,10 +28,13 @@ func _ready():
 	camera.current = true
 
 func _process(_delta):
-	if position.y > 3000:
-		reset()
-		get_node('..').active = 'red'
-		emit_signal('reset')
+	print(position.y)
+	if position.y > 3000 and $Respawn.time_left == 0:
+		print('reset')
+		$CPUParticles2D.emitting = true
+		$Sprite.visible = false
+		$Respawn.start()
+		print('timer started')
 	if dragState and can_jump:
 		if not jump.playing:
 			jump.play()
@@ -74,3 +77,10 @@ func _input(event):
 			dragState = false
 	elif event is InputEventKey and event.pressed and event.scancode == KEY_SPACE:
 		emit_signal('switch')
+
+
+func _on_Respawn_timeout():
+	reset()
+	get_node('..').active = 'red'
+	emit_signal('reset')
+	$Sprite.visible = true
