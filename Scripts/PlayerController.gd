@@ -13,6 +13,7 @@ onready var shake  := camera.get_node("ScreenShake")
 onready var jump        : AudioStreamPlayer2D = get_node("Jump")
 onready var land        : AudioStreamPlayer2D = get_node("Land")
 onready var explosion   : AudioStreamPlayer2D = get_node("Explosion")
+onready var checkpoint  : AudioStreamPlayer2D = get_node("Checkpoint")
 
 onready var particles   : CPUParticles2D = get_node("Particles")
 
@@ -95,3 +96,7 @@ func _on_Respawn_timeout():
 	get_node('..').active = 'red'
 	emit_signal('reset')
 	sprite.visible = true
+
+func _on_checkpoint():
+	checkpoint.play()
+	get_node("Label")._on_checkpoint()
