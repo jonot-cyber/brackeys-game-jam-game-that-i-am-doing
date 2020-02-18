@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TilesetDebug.png" type="Texture" id=2]
@@ -80,8 +80,11 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/shapes = [  ]
 4/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 96, 3968 )
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0.796875, 0.0996094, 0.0996094, 1, 0.902344, 0.577403, 0.0704956, 1 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 304, 5304 )
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -119,10 +122,18 @@ emitting = false
 amount = 10
 one_shot = true
 explosiveness = 1.0
+randomness = 0.39
 spread = 180.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 100.0
-scale_amount = 34.26
+angular_velocity = 65.24
+angular_velocity_random = 0.35
+damping = 23.66
+scale_amount = 40.0
+scale_amount_random = 0.5
+color_ramp = SubResource( 4 )
+anim_speed = 1.0
+anim_speed_random = 0.32
 
 [node name="Respawn" type="Timer" parent="Player"]
 one_shot = true
@@ -137,7 +148,7 @@ script = ExtResource( 9 )
 [node name="Area2D" type="Area2D" parent="Checkpoint1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1/Area2D"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
