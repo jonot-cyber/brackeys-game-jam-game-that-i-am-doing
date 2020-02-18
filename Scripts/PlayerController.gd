@@ -10,8 +10,13 @@ onready var sprite : Sprite   = get_node("Sprite")
 
 onready var shake  := camera.get_node("ScreenShake")
 
-onready var jump   : AudioStreamPlayer2D = get_node("Jump")
-onready var land   : AudioStreamPlayer2D = get_node("Land")
+onready var jump        : AudioStreamPlayer2D = get_node("Jump")
+onready var land        : AudioStreamPlayer2D = get_node("Land")
+onready var explosion   : AudioStreamPlayer2D = get_node("Explosion")
+
+onready var particles   : CPUParticles2D = get_node("Particles")
+
+onready var respawn     : Timer = get_node("Respawn")
 
 signal switch
 signal reset
@@ -29,11 +34,13 @@ func _ready():
 
 func _process(_delta):
 	print(position.y)
-	if position.y > 3000 and $Respawn.time_left == 0:
+	if position.y > 3000 and respawn.time_left == 0:
 		print('reset')
-		$CPUParticles2D.emitting = true
-		$Sprite.visible = false
-		$Respawn.start()
+		particles.emitting = true
+		shake.start(0.2, 30, 32)
+		explosion.play()
+		sprite.visible = false
+		respawn.start()
 		print('timer started')
 	if dragState and can_jump:
 		if not jump.playing:
@@ -83,4 +90,4 @@ func _on_Respawn_timeout():
 	reset()
 	get_node('..').active = 'red'
 	emit_signal('reset')
-	$Sprite.visible = true
+	sprite.visible = true

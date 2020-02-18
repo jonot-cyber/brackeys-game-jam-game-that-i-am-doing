@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TilesetDebug.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://Scenes/Objects/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Music/Jump.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Music/Land.wav" type="AudioStream" id=6]
-[ext_resource path="res://Assets/Background.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Music/Explosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -99,19 +100,21 @@ stream = ExtResource( 5 )
 [node name="Land" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource( 6 )
 
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 7 )
+
 [node name="Sprite2" type="Sprite" parent="Player"]
 modulate = Color( 0.376471, 0.517647, 0.509804, 1 )
 position = Vector2( 5000, 5000 )
-scale = Vector2( 1e+07, 1e+06 )
+scale = Vector2( 1e+007, 1e+006 )
 z_index = -2
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+[node name="Particles" type="CPUParticles2D" parent="Player"]
 emitting = false
 amount = 10
 one_shot = true
 explosiveness = 1.0
-direction = Vector2( 0, 0 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 100.0
