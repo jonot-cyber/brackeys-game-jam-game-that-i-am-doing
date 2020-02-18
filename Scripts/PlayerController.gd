@@ -26,6 +26,8 @@ var dragState
 var last_collision
 var can_jump = true
 
+var can_switch = true
+
 var collision
 
 func _ready():
@@ -79,8 +81,13 @@ func _input(event):
 			dragState = true
 		else:
 			dragState = false
-	elif event is InputEventKey and event.pressed and event.scancode == KEY_SPACE:
-		emit_signal('switch')
+	elif event is InputEventKey and event.scancode == KEY_SPACE:
+		if event.pressed:
+			if can_switch:
+				emit_signal('switch')
+				can_switch = false
+		else:
+			can_switch = true
 
 
 func _on_Respawn_timeout():

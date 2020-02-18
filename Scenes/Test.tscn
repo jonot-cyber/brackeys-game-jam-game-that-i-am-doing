@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TilesetDebug.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Assets/Music/Explosion.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Background.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Checkpoint.gd" type="Script" id=9]
+[ext_resource path="res://Assets/OdibeeSans-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Scenes/CheckpointText.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -83,6 +85,10 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 [sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0.796875, 0.0996094, 0.0996094, 1, 0.902344, 0.577403, 0.0704956, 1 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 200
+font_data = ExtResource( 10 )
+
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 304, 5304 )
 
@@ -138,6 +144,24 @@ anim_speed_random = 0.32
 [node name="Respawn" type="Timer" parent="Player"]
 one_shot = true
 
+[node name="Label" type="Label" parent="Player"]
+visible = false
+margin_left = -1532.0
+margin_top = -896.0
+margin_right = 1528.0
+margin_bottom = 308.0
+custom_fonts/font = SubResource( 6 )
+text = "Checkpoint Reached"
+align = 1
+valign = 1
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextFade" type="Timer" parent="Player/Label"]
+one_shot = true
+
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 9, 0 )
 
@@ -153,4 +177,6 @@ shape = SubResource( 5 )
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="timeout" from="Player/Respawn" to="Player" method="_on_Respawn_timeout"]
+[connection signal="timeout" from="Player/Label/TextFade" to="Player/Label" method="_on_TextFade_timeout"]
+[connection signal="checkpoint" from="Checkpoint1" to="Player/Label" method="_on_checkpoint"]
 [connection signal="body_entered" from="Checkpoint1/Area2D" to="Checkpoint1" method="_on_Area2D_body_entered"]
