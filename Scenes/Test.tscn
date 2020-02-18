@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TilesetDebug.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Music/Land.wav" type="AudioStream" id=6]
 [ext_resource path="res://Assets/Music/Explosion.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Background.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Checkpoint.gd" type="Script" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -79,6 +80,9 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/shapes = [  ]
 4/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 96, 3968 )
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1, 0 )
 script = ExtResource( 1 )
@@ -106,7 +110,7 @@ stream = ExtResource( 7 )
 [node name="Sprite2" type="Sprite" parent="Player"]
 modulate = Color( 0.376471, 0.517647, 0.509804, 1 )
 position = Vector2( 5000, 5000 )
-scale = Vector2( 1e+007, 1e+006 )
+scale = Vector2( 1e+07, 1e+06 )
 z_index = -2
 texture = ExtResource( 8 )
 
@@ -125,7 +129,17 @@ one_shot = true
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 9, 0 )
+
+[node name="Checkpoint1" type="Position2D" parent="."]
+position = Vector2( 9151, 40 )
+script = ExtResource( 9 )
+
+[node name="Area2D" type="Area2D" parent="Checkpoint1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1/Area2D"]
+shape = SubResource( 4 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="timeout" from="Player/Respawn" to="Player" method="_on_Respawn_timeout"]
+[connection signal="body_entered" from="Checkpoint1/Area2D" to="Checkpoint1" method="_on_Area2D_body_entered"]

@@ -33,15 +33,12 @@ func _ready():
 	camera.current = true
 
 func _process(_delta):
-	print(position.y)
 	if position.y > 3000 and respawn.time_left == 0:
-		print('reset')
 		particles.emitting = true
 		shake.start(0.2, 30, 32)
 		explosion.play()
 		sprite.visible = false
 		respawn.start()
-		print('timer started')
 	if dragState and can_jump:
 		if not jump.playing:
 			jump.play()
