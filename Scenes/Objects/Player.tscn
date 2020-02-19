@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/icon.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Objects/ScreenShake.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Music/Jump.wav" type="AudioStream" id=4]
-[ext_resource path="res://Assets/Music/Land.wav" type="AudioStream" id=5]
-[ext_resource path="res://Assets/Music/Explosion.wav" type="AudioStream" id=6]
-[ext_resource path="res://Assets/Music/Checkpoint.wav" type="AudioStream" id=7]
-[ext_resource path="res://Assets/Background.png" type="Texture" id=8]
-[ext_resource path="res://Assets/OdibeeSans-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Scripts/CheckpointText.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=4]
+[ext_resource path="res://Assets/OdibeeSans-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scripts/CheckpointText.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Music/Jump.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Music/Land.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Music/Explosion.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Music/Checkpoint.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Music/MusicA.wav" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 48 )
@@ -25,7 +26,7 @@ colors = PoolColorArray( 0.796875, 0.0996094, 0.0996094, 1, 0.902344, 0.577403, 
 
 [sub_resource type="DynamicFont" id=5]
 size = 200
-font_data = ExtResource( 9 )
+font_data = ExtResource( 5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -38,29 +39,17 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="."]
+editor/display_folded = true
 zoom = Vector2( 3, 3 )
 
 [node name="ScreenShake" parent="Camera" instance=ExtResource( 3 )]
-
-[node name="Jump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-
-[node name="Land" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
-
-[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 6 )
-
-[node name="Checkpoint" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 7 )
-attenuation = 0.812252
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.376471, 0.517647, 0.509804, 1 )
 position = Vector2( 5000, 5000 )
 scale = Vector2( 1e+007, 1e+006 )
 z_index = -2
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 material = SubResource( 6 )
@@ -94,12 +83,32 @@ custom_fonts/font = SubResource( 5 )
 text = "Checkpoint Reached"
 align = 1
 valign = 1
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextFade" type="Timer" parent="Label"]
 one_shot = true
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource( 7 )
+
+[node name="Land" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource( 8 )
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource( 9 )
+
+[node name="Checkpoint" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource( 10 )
+attenuation = 0.812252
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 11 )
+volume_db = -4.727
+autoplay = true
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Label/TextFade" to="Label" method="_on_TextFade_timeout"]

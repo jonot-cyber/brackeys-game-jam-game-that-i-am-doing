@@ -10,10 +10,10 @@ onready var sprite : Sprite   = get_node("Sprite")
 
 onready var shake  := camera.get_node("ScreenShake")
 
-onready var jump        : AudioStreamPlayer2D = get_node("Jump")
-onready var land        : AudioStreamPlayer2D = get_node("Land")
-onready var explosion   : AudioStreamPlayer2D = get_node("Explosion")
-onready var checkpoint  : AudioStreamPlayer2D = get_node("Checkpoint")
+onready var jump        : AudioStreamPlayer2D = get_node("Music/Jump")
+onready var land        : AudioStreamPlayer2D = get_node("Music/Land")
+onready var explosion   : AudioStreamPlayer2D = get_node("Music/Explosion")
+onready var checkpoint  : AudioStreamPlayer2D = get_node("Music/Checkpoint")
 
 onready var particles   : CPUParticles2D = get_node("Particles")
 
@@ -36,6 +36,7 @@ func _ready():
 	camera.current = true
 
 func _process(_delta):
+	
 	if position.y > 3000 and respawn.time_left == 0:
 		particles.emitting = true
 		shake.start(0.2, 30, 32)
