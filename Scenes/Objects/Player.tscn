@@ -15,16 +15,16 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 48 )
 
-[sub_resource type="CanvasItemMaterial" id=6]
+[sub_resource type="CanvasItemMaterial" id=2]
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.796875, 0.0996094, 0.0996094, 1, 0.902344, 0.577403, 0.0704956, 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 200
 font_data = ExtResource( 5 )
 
@@ -39,7 +39,6 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="."]
-editor/display_folded = true
 zoom = Vector2( 3, 3 )
 
 [node name="ScreenShake" parent="Camera" instance=ExtResource( 3 )]
@@ -47,12 +46,12 @@ zoom = Vector2( 3, 3 )
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.376471, 0.517647, 0.509804, 1 )
 position = Vector2( 5000, 5000 )
-scale = Vector2( 1e+007, 1e+006 )
+scale = Vector2( 1e+07, 1e+06 )
 z_index = -2
 texture = ExtResource( 4 )
 
 [node name="Particles" type="CPUParticles2D" parent="."]
-material = SubResource( 6 )
+material = SubResource( 2 )
 emitting = false
 amount = 10
 one_shot = true
@@ -66,7 +65,7 @@ angular_velocity_random = 0.35
 damping = 23.66
 scale_amount = 40.0
 scale_amount_random = 0.5
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 3 )
 anim_speed = 1.0
 anim_speed_random = 0.32
 
@@ -79,7 +78,7 @@ margin_left = -1532.0
 margin_top = -896.0
 margin_right = 1528.0
 margin_bottom = 308.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Checkpoint Reached"
 align = 1
 valign = 1
@@ -90,6 +89,8 @@ __meta__ = {
 
 [node name="TextFade" type="Timer" parent="Label"]
 one_shot = true
+
+[node name="Tween" type="Tween" parent="Label"]
 
 [node name="Music" type="Node2D" parent="."]
 

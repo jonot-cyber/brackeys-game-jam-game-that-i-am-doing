@@ -76,7 +76,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/shapes = [  ]
 4/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 304, 5304 )
 
 [node name="Node2D" type="Node2D"]
@@ -106,7 +106,7 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1/Area2D"]
 position = Vector2( 0, -2160 )
 scale = Vector2( 0.993056, 0.616051 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
