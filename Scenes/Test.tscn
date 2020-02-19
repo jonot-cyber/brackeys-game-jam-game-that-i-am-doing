@@ -103,6 +103,7 @@ position = Vector2( 9, 0 )
 [node name="Checkpoint1" type="Position2D" parent="."]
 position = Vector2( 9151, 40 )
 script = ExtResource( 5 )
+color = Color( 0.866667, 0.439216, 0.290196, 1 )
 
 [node name="Area2D" type="Area2D" parent="Checkpoint1"]
 
@@ -114,6 +115,7 @@ shape = SubResource( 4 )
 [node name="Checkpoint2" type="Position2D" parent="."]
 position = Vector2( 12036.4, -2516.96 )
 script = ExtResource( 5 )
+color = Color( 0.180392, 0.180392, 0.180392, 1 )
 
 [node name="Area2D" type="Area2D" parent="Checkpoint2"]
 position = Vector2( 0, 0.000244141 )
@@ -122,8 +124,8 @@ position = Vector2( 0, 0.000244141 )
 position = Vector2( 0, -0.000244141 )
 shape = SubResource( 5 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
-[connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
+[connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="checkpoint" from="Checkpoint1" to="Player" method="_on_checkpoint"]
 [connection signal="body_entered" from="Checkpoint1/Area2D" to="Checkpoint1" method="_on_Area2D_body_entered"]
 [connection signal="checkpoint" from="Checkpoint2" to="Player" method="_on_checkpoint"]
