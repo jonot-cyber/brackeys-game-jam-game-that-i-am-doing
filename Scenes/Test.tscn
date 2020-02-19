@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TilesetDebug.png" type="Texture" id=2]
@@ -79,6 +79,9 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 304, 5304 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 259.176, 1655.54 )
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1, 0 )
 script = ExtResource( 1 )
@@ -107,8 +110,21 @@ script = ExtResource( 5 )
 position = Vector2( 0, -2160 )
 scale = Vector2( 0.993056, 0.616051 )
 shape = SubResource( 4 )
+
+[node name="Checkpoint2" type="Position2D" parent="."]
+position = Vector2( 12036.4, -2516.96 )
+script = ExtResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="Checkpoint2"]
+position = Vector2( 0, 0.000244141 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2/Area2D"]
+position = Vector2( 0, -0.000244141 )
+shape = SubResource( 5 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
-[connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
+[connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="checkpoint" from="Checkpoint1" to="Player" method="_on_checkpoint"]
 [connection signal="body_entered" from="Checkpoint1/Area2D" to="Checkpoint1" method="_on_Area2D_body_entered"]
+[connection signal="checkpoint" from="Checkpoint2" to="Player" method="_on_checkpoint"]
+[connection signal="body_entered" from="Checkpoint2/Area2D" to="Checkpoint2" method="_on_Area2D_body_entered"]

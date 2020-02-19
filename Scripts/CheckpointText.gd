@@ -1,9 +1,8 @@
 extends Label
 
 func _on_checkpoint():
-	print('checkpoint')
 	visible = true
-	var position_holder = rect_position
+	rect_position = Vector2(-1532,-896)
 	$Tween.interpolate_property(self,"rect_position",rect_position,Vector2(rect_position.x,-2000),1,Tween.TRANS_QUAD,Tween.EASE_IN)
 	$Tween.interpolate_property(self,"rect_position",rect_position,Vector2(rect_position.x,-2000),1,Tween.TRANS_QUAD,Tween.EASE_IN)
 	$Tween.start()
