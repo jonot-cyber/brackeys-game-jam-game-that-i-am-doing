@@ -121,14 +121,14 @@ volume_db = 1.0
 autoplay = true
 
 [node name="Time" type="Label" parent="."]
-margin_left = -1538.72
-margin_top = -886.96
-margin_right = 1527.28
-margin_bottom = -719.96
+margin_left = -1522.0
+margin_top = -887.0
+margin_right = 1533.0
+margin_bottom = 886.0
 custom_fonts/font = SubResource( 5 )
-text = "0"
+text = "0
+"
 align = 1
-valign = 1
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
