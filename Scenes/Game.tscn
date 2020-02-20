@@ -109,8 +109,8 @@ position = Vector2( 0, 3.795 )
 [node name="Checkpoint3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 20584.9, -1015.08 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
-[connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
+[connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 
 [editable path="Checkpoint"]
 
