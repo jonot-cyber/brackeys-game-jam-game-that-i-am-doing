@@ -135,7 +135,7 @@ __meta__ = {
 }
 
 [node name="Second" type="Timer" parent="Time"]
-wait_time = 0.001
+wait_time = 0.1
 autostart = true
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Label/TextFade" to="Label" method="_on_TextFade_timeout"]
