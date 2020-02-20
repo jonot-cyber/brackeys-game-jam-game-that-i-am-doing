@@ -1,11 +1,5 @@
 extends Node
 
-var duration = 0.2
-var frequency = 15
-var amplitude = 16
-
-var priority = 0
-
 const TRANS = Tween.TRANS_SINE
 const EASE = Tween.EASE_IN_OUT
 
@@ -15,6 +9,10 @@ onready var nodeDuration = get_node("Duration")
 onready var camera = get_parent()
 
 signal start
+
+var duration
+var frequency
+var amplitude
 
 func start(duration, frequency, amplitude):
 	self.duration = duration
