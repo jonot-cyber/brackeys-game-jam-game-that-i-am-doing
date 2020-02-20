@@ -23,6 +23,10 @@ config/icon="res://Assets/icon.png"
 
 gdscript/completion/autocomplete_setters_and_getters=true
 
+[display]
+
+window/size/resizable=false
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
