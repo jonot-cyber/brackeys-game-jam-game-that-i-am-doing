@@ -28,6 +28,7 @@ var last_collision
 var can_jump = true
 
 var can_switch = true
+var can_fullscreen = true
 
 var collision
 
@@ -36,7 +37,6 @@ func _ready():
 	camera.current = true
 
 func _process(_delta):
-	
 	if position.y > 3000 and respawn.time_left == 0:
 		particles.emitting = true
 		shake.start(0.2, 30, 32)
@@ -90,6 +90,13 @@ func _input(event):
 				can_switch = false
 		else:
 			can_switch = true
+	if event is InputEventKey and event.scancode == KEY_F11:
+		if event.pressed:
+			if can_fullscreen:
+				OS.window_fullscreen = !OS.window_fullscreen
+				can_fullscreen = false
+		else:
+			can_fullscreen = true
 
 
 func _on_Respawn_timeout():

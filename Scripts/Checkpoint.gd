@@ -9,7 +9,7 @@ onready var spawn      : Position2D =      get_node("../Spawn")
 onready var player     : KinematicBody2D = get_node("../Player")
 
 const TRANS = Tween.TRANS_LINEAR
-const EASE = Tween.EASE_IN_OUT
+const EASE  = Tween.EASE_IN_OUT
 
 signal checkpoint
 

@@ -6,7 +6,7 @@ onready var tween    : Tween = get_node("Tween")
 onready var textfade : Timer = get_node("TextFade")
 
 const TRANS = Tween.TRANS_QUAD
-const EASE = Tween.EASE_IN
+const EASE  = Tween.EASE_IN
 
 func _on_checkpoint():
 	visible = true
