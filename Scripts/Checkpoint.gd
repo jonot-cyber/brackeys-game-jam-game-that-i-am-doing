@@ -17,7 +17,6 @@ func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		spawn.position = position
 		player._on_checkpoint()
-		print(modulate)
 		tween.interpolate_property(background, "modulate", background.modulate, color, duration, TRANS, EASE)
 		tween.start()
 		emit_signal("checkpoint")
