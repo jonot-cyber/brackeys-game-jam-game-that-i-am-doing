@@ -6,11 +6,12 @@ var blue_tiles : Array
 onready var texture = load("res://Assets/TilesetMain.png")
 
 func _ready():
-	tile_set.tile_set_texture(0, texture)
-	tile_set.tile_set_texture(1, texture)
-	tile_set.tile_set_texture(2, texture)
-	tile_set.tile_set_texture(3, texture)
-	tile_set.tile_set_texture(4, texture)
+	for i in range(5):
+		tile_set.tile_set_texture(0, texture)
+		tile_set.tile_set_texture(1, texture)
+		tile_set.tile_set_texture(2, texture)
+		tile_set.tile_set_texture(3, texture)
+		tile_set.tile_set_texture(4, texture)
 	#find red tiles
 	var tile_id = get_tileset().find_tile_by_name("Red Block")
 	red_tiles = get_used_cells_by_id(tile_id)

@@ -92,7 +92,6 @@ script = ExtResource( 3 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
 [node name="Spawn" type="Position2D" parent="."]
-position = Vector2( 15787.6, -667.292 )
 
 [node name="Checkpoint" parent="." instance=ExtResource( 5 )]
 position = Vector2( 9151, 40 )
