@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Holes"
-run/main_scene="res://Scenes/Test.tscn"
+run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://Assets/icon.png"
 
 [debug]
@@ -27,7 +27,7 @@ gdscript/completion/autocomplete_setters_and_getters=true
 
 quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
-quality/intended_usage/framebuffer_allocation=0
-quality/intended_usage/framebuffer_allocation.mobile=0
+quality/intended_usage/framebuffer_allocation=1
+quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
