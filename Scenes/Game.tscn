@@ -95,14 +95,13 @@ script = ExtResource( 3 )
 position = Vector2( 9, 0 )
 
 [node name="Checkpoint" parent="." instance=ExtResource( 5 )]
-editor/display_folded = true
 position = Vector2( 9151, 40 )
+color = Color( 0.945098, 0.360784, 0.0745098, 1 )
 
 [node name="Area2D" parent="Checkpoint" index="0"]
 position = Vector2( 0, -500 )
 
 [node name="Checkpoint2" parent="." instance=ExtResource( 5 )]
-editor/display_folded = true
 position = Vector2( 12036.4, -2516.96 )
 
 [node name="CollisionShape2D" parent="Checkpoint2/Area2D" index="0"]
