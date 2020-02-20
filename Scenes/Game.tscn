@@ -126,8 +126,8 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndPoint"]
 shape = SubResource( 4 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
-[connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
+[connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_EndPoint_body_entered"]
 
 [editable path="Checkpoint"]

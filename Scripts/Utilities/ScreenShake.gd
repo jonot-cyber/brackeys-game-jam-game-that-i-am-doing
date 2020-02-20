@@ -3,10 +3,10 @@ extends Node
 const TRANS = Tween.TRANS_SINE
 const EASE = Tween.EASE_IN_OUT
 
-onready var tween = get_node("ShakeTween")
-onready var nodeFrequency = get_node("Frequency")
-onready var nodeDuration = get_node("Duration")
-onready var camera = get_parent()
+onready var tween         : Tween    = get_node("ShakeTween")
+onready var nodeFrequency : Timer    = get_node("Frequency")
+onready var nodeDuration  : Timer    = get_node("Duration")
+onready var camera        : Camera2D = get_parent()
 
 signal start
 
