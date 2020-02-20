@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/OdibeeSans-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Button.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+font_data = ExtResource( 1 )
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2.86395
+margin_top = -1.43201
+margin_right = 1021.14
+margin_bottom = 598.568
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+rect_min_size = Vector2( 1024, 100 )
+custom_fonts/font = SubResource( 1 )
+text = "HOLES"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 351.0
+margin_top = 200.0
+margin_right = 673.0
+margin_bottom = 493.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+margin_right = 322.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+margin_top = 99.0
+margin_right = 322.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 2 )
+text = "Credits"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Button" parent="VBoxContainer"]
+margin_top = 198.0
+margin_right = 322.0
+margin_bottom = 293.0
+custom_fonts/font = SubResource( 2 )
+text = "Instructions"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="VBoxContainer/Play" to="VBoxContainer/Play" method="press"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="VBoxContainer/Credits" method="press"]
+[connection signal="pressed" from="VBoxContainer/Instructions" to="VBoxContainer/Instructions" method="press"]
