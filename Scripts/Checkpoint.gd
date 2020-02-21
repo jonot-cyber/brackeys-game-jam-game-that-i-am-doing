@@ -2,6 +2,7 @@ extends Position2D
 
 export var color : Color
 export var duration : float = 1
+export var switch : String = "red"
 
 onready var tween      : Tween =           get_node("Tween")
 onready var background : Sprite =          get_node("../Player/Background")
@@ -17,6 +18,8 @@ func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		spawn.position = position
 		player._on_checkpoint()
+		get_node('..').active = switch
+		get_node('../TileMap').update_tiles()
 		tween.interpolate_property(background, "modulate", background.modulate, color, duration, TRANS, EASE)
 		tween.start()
 		emit_signal("checkpoint")
