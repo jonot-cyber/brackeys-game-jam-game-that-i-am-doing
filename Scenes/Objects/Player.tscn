@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/icon.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Objects/ScreenShake.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Background.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/Background.png" type="Texture" id=4]
 [ext_resource path="res://Assets/OdibeeSans-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scripts/CheckpointText.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Music/Jump.wav" type="AudioStream" id=7]
@@ -30,10 +30,6 @@ size = 200
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 150
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=6]
 size = 150
 font_data = ExtResource( 5 )
 
@@ -141,18 +137,6 @@ __meta__ = {
 [node name="Second" type="Timer" parent="Time"]
 wait_time = 0.1
 autostart = true
-
-[node name="Win" type="Label" parent="."]
-visible = false
-margin_left = -253.917
-margin_top = -344.018
-margin_right = 276.083
-margin_bottom = -177.018
-custom_fonts/font = SubResource( 6 )
-text = "YOU WON!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Label/TextFade" to="Label" method="_on_TextFade_timeout"]
 [connection signal="timeout" from="Time/Second" to="Time" method="_on_Second_timeout"]
