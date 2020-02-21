@@ -96,7 +96,6 @@ script = ExtResource( 3 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
 [node name="Spawn" type="Position2D" parent="."]
-position = Vector2( 36072.1, 543.8 )
 
 [node name="EndPoint" type="Area2D" parent="."]
 position = Vector2( 52603.6, -802.169 )
@@ -130,3 +129,4 @@ color = Color( 0.560784, 0.301961, 0.301961, 1 )
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_EndPoint_body_entered"]
+[connection signal="body_entered" from="EndPoint" to="Player" method="_on_EndPoint_body_entered"]

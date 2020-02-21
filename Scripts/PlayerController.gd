@@ -108,3 +108,7 @@ func _on_Respawn_timeout():
 func _on_checkpoint():
 	checkpoint.play()
 	get_node("Label")._on_checkpoint()
+
+
+func _on_EndPoint_body_entered(body):
+	$Win.visible = true
