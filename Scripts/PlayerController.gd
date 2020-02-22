@@ -70,6 +70,7 @@ func _physics_process(_delta):
 			if not land.playing:
 				land.play()
 				bounce.emitting = true
+				bounce.restart()
 				bounce_timer.start()
 			shake.start(0.2, 15, 16)
 			direction = Vector2(0,0)

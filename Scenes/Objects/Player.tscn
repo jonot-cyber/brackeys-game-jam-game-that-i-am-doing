@@ -143,6 +143,7 @@ position = Vector2( 0, 50 )
 z_index = -2
 emitting = false
 lifetime = 2.0
+one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 local_coords = false
