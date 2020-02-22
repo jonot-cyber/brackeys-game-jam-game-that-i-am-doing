@@ -10,14 +10,17 @@ onready var sprite : Sprite   = get_node("Sprite")
 
 onready var shake  := camera.get_node("ScreenShake")
 
-onready var jump        : AudioStreamPlayer2D = get_node("Music/Jump")
-onready var land        : AudioStreamPlayer2D = get_node("Music/Land")
-onready var explosion   : AudioStreamPlayer2D = get_node("Music/Explosion")
-onready var checkpoint  : AudioStreamPlayer2D = get_node("Music/Checkpoint")
+onready var jump         : AudioStreamPlayer2D = get_node("Music/Jump")
+onready var land         : AudioStreamPlayer2D = get_node("Music/Land")
+onready var explosion    : AudioStreamPlayer2D = get_node("Music/Explosion")
+onready var checkpoint   : AudioStreamPlayer2D = get_node("Music/Checkpoint")
 
-onready var particles   : CPUParticles2D = get_node("Particles")
+onready var particles    : CPUParticles2D = get_node("Particles")
+onready var bounce       : CPUParticles2D = get_node("Bounce")
 
-onready var respawn     : Timer = get_node("Respawn")
+onready var bounce_timer : Timer = get_node("Bounce/BounceTimer")
+
+onready var respawn      : Timer = get_node("Respawn")
 
 signal switch
 signal reset
@@ -66,6 +69,8 @@ func _physics_process(_delta):
 		if last_collision != collision.collider_id:
 			if not land.playing:
 				land.play()
+				bounce.emitting = true
+				bounce_timer.start()
 			shake.start(0.2, 15, 16)
 			direction = Vector2(0,0)
 		last_collision = collision.collider_id
@@ -112,3 +117,7 @@ func _on_checkpoint():
 
 func _on_EndPoint_body_entered(body):
 	$Win.visible = true
+
+
+func bounce_timeout():
+	bounce.emitting = false

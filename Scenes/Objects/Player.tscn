@@ -137,6 +137,24 @@ __meta__ = {
 [node name="Second" type="Timer" parent="Time"]
 wait_time = 0.1
 autostart = true
+
+[node name="Bounce" type="CPUParticles2D" parent="."]
+position = Vector2( 0, 50 )
+z_index = -2
+emitting = false
+lifetime = 2.0
+speed_scale = 2.0
+explosiveness = 1.0
+local_coords = false
+direction = Vector2( 1, 3 )
+spread = 176.4
+gravity = Vector2( 0, -30 )
+initial_velocity = 50.0
+scale_amount = 40.0
+
+[node name="BounceTimer" type="Timer" parent="Bounce"]
+one_shot = true
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Label/TextFade" to="Label" method="_on_TextFade_timeout"]
 [connection signal="timeout" from="Time/Second" to="Time" method="_on_Second_timeout"]
+[connection signal="timeout" from="Bounce/BounceTimer" to="." method="bounce_timeout"]
