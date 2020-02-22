@@ -119,6 +119,5 @@ func _on_checkpoint():
 func _on_EndPoint_body_entered(body):
 	$Win.visible = true
 
-
 func bounce_timeout():
 	bounce.emitting = false
