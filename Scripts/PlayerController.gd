@@ -125,3 +125,4 @@ func bounce_timeout():
 
 func _on_SwitchButton_pressed():
 	emit_signal("switch")
+	$SwitchButton.focus_mode = 0
