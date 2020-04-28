@@ -83,7 +83,7 @@ func reset():
 	direction = Vector2(0,0)
 	position = get_node("../Spawn").position
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if not dragState:
 			dragState = true
@@ -121,3 +121,7 @@ func _on_EndPoint_body_entered(body):
 
 func bounce_timeout():
 	bounce.emitting = false
+
+
+func _on_SwitchButton_pressed():
+	emit_signal("switch")
