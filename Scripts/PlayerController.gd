@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 var direction      : Vector2 = Vector2(0,0)
 
-export var speed   : float = 5
-export var gravity : float = .1
+export var speed   : float = 3.5
+export var gravity : float = .09
 
 onready var camera : Camera2D = get_node("Camera")
 onready var sprite : Sprite   = get_node("Sprite")

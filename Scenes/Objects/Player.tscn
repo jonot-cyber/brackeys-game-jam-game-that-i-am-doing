@@ -9,38 +9,38 @@
 [ext_resource path="res://Assets/Music/Checkpoint.wav" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Music/MusicA.ogg" type="AudioStream" id=11]
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="CanvasItemMaterial" id=7]
+[sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0.796875, 0.0996094, 0.0996094, 1, 0.902344, 0.577403, 0.0704956, 1 )
 
-[sub_resource type="CanvasItemMaterial" id=9]
+[sub_resource type="CanvasItemMaterial" id=5]
 light_mode = 1
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 14.27, -19.0273 )
 script = ExtResource( 1 )
-speed = 3.5
-gravity = 0.09
+speed = 3.25
+gravity = 0.085
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 5 )
+material = SubResource( 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
@@ -51,7 +51,7 @@ editor_draw_drag_margin = true
 [node name="ScreenShake" parent="Camera" instance=ExtResource( 3 )]
 
 [node name="Particles" type="CPUParticles2D" parent="."]
-material = SubResource( 7 )
+material = SubResource( 3 )
 emitting = false
 amount = 10
 one_shot = true
@@ -65,9 +65,29 @@ angular_velocity_random = 0.35
 damping = 23.66
 scale_amount = 13.0
 scale_amount_random = 0.5
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 4 )
 anim_speed = 1.0
 anim_speed_random = 0.32
+
+[node name="Bounce" type="CPUParticles2D" parent="."]
+material = SubResource( 5 )
+position = Vector2( 0, 50 )
+z_index = -2
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+local_coords = false
+direction = Vector2( 1, 3 )
+spread = 176.4
+gravity = Vector2( 0, -30 )
+initial_velocity = 50.0
+scale_amount = 13.0
+
+[node name="BounceTimer" type="Timer" parent="Bounce"]
+wait_time = 0.5
+one_shot = true
 
 [node name="Respawn" type="Timer" parent="."]
 one_shot = true
@@ -93,29 +113,9 @@ stream = ExtResource( 11 )
 volume_db = 1.0
 autoplay = true
 
-[node name="Bounce" type="CPUParticles2D" parent="."]
-material = SubResource( 9 )
-position = Vector2( 0, 50 )
-z_index = -2
-emitting = false
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-lifetime_randomness = 1.0
-local_coords = false
-direction = Vector2( 1, 3 )
-spread = 176.4
-gravity = Vector2( 0, -30 )
-initial_velocity = 50.0
-scale_amount = 13.0
-
-[node name="BounceTimer" type="Timer" parent="Bounce"]
-wait_time = 0.5
-one_shot = true
-
 [node name="Background" type="CanvasModulate" parent="."]
 color = Color( 0.403922, 0.74902, 0.85098, 1 )
 
 [node name="Tween" type="Tween" parent="Background"]
-[connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="timeout" from="Bounce/BounceTimer" to="." method="bounce_timeout"]
+[connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]

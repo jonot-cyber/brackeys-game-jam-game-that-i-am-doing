@@ -1,0 +1,135 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/UI/Itch.gd" type="Script" id=1]
+[ext_resource path="res://Assets/OdibeeSans-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Images/github.svg" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/itch-dot-io.svg" type="Texture" id=4]
+[ext_resource path="res://Scripts/UI/Github.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/UI/Button.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/UI/Record.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2.86395
+margin_top = -1.43201
+margin_right = 1021.14
+margin_bottom = 598.568
+color = Color( 0.176471, 0.305882, 0.580392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+rect_min_size = Vector2( 1024, 100 )
+custom_fonts/font = SubResource( 1 )
+text = "HOLES"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 351.0
+margin_top = 200.0
+margin_right = 673.0
+margin_bottom = 493.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+margin_right = 322.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+margin_top = 99.0
+margin_right = 322.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 2 )
+text = "Credits"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Button" parent="VBoxContainer"]
+margin_top = 198.0
+margin_right = 322.0
+margin_bottom = 293.0
+custom_fonts/font = SubResource( 2 )
+text = "Instructions"
+flat = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Record" type="Label" parent="."]
+margin_left = 148.0
+margin_top = 130.0
+margin_right = 367.0
+margin_bottom = 166.0
+custom_fonts/font = SubResource( 3 )
+text = "Best Time: 1 second"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.05
+anchor_top = -0.05
+anchor_right = 0.1
+anchor_bottom = 50.0
+margin_top = 536.0
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Github" type="TextureButton" parent="HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 30094.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+script = ExtResource( 5 )
+
+[node name="Itch" type="TextureButton" parent="HBoxContainer"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 30094.0
+texture_normal = ExtResource( 4 )
+script = ExtResource( 1 )
+[connection signal="pressed" from="VBoxContainer/Play" to="VBoxContainer/Play" method="press"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="VBoxContainer/Credits" method="press"]
+[connection signal="pressed" from="VBoxContainer/Instructions" to="VBoxContainer/Instructions" method="press"]
+[connection signal="pressed" from="HBoxContainer/Github" to="HBoxContainer/Github" method="_on_Github_pressed"]
+[connection signal="pressed" from="HBoxContainer/Itch" to="HBoxContainer/Itch" method="_on_Itch_pressed"]

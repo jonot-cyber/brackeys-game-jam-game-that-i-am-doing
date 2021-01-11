@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Holes"
-run/main_scene="res://Scenes/UI.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/icon="res://Assets/Images/icon.png"
 
 [debug]
@@ -38,7 +38,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=1
 quality/intended_usage/framebuffer_allocation.mobile=1
