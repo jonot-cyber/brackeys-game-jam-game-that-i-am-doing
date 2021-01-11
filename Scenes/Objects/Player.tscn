@@ -44,6 +44,7 @@ shape = SubResource( 6 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
