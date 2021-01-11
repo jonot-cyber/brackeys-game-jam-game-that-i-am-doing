@@ -1,7 +1,7 @@
 extends Area2D
 
 onready var isHTML = OS.get_name() == "HTML5"
-onready var timer : Timer = get_node('../Player/Time/Second')
+onready var timer : Timer = get_node('../CanvasLayer/Time/Second')
 
 func _ready():
 	timer.one_shot = true

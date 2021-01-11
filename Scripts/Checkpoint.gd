@@ -22,7 +22,6 @@ func _on_Area2D_body_entered(body):
 		spawn.position = position
 		player._on_checkpoint()
 		main.active = switch
-		tilemap.update_tiles()
 		tween.interpolate_property(background, "color", background.color, color, duration, TRANS, EASE)
 		tween.start()
 		emit_signal("checkpoint")

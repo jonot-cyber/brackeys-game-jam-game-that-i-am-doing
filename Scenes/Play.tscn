@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TilesetDebug.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Objects/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Objects/Checkpoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/EndPoint.gd" type="Script" id=6]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -106,7 +107,7 @@ extents = Vector2( 603.246, 2045.04 )
 script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 8, 8 )
+scale = Vector2( 2, 2 )
 tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 64
@@ -115,6 +116,7 @@ tile_data = PoolIntArray( -1572764, 1, 0, -1507228, 1, 0, -1441692, 1, 0, -13761
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 0 )
 
 [node name="Spawn" type="Position2D" parent="."]
 
@@ -147,9 +149,9 @@ switch = "blue"
 [node name="Checkpoint5" parent="Checkpoints" instance=ExtResource( 5 )]
 position = Vector2( 41305, 732.689 )
 color = Color( 0.560784, 0.301961, 0.301961, 1 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 7 )]
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
 [connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_EndPoint_body_entered"]
-
-[editable path="Checkpoints/Checkpoint4"]

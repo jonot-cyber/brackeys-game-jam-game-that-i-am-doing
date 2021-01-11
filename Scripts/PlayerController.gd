@@ -42,14 +42,14 @@ func _ready():
 func _process(_delta):
 	if position.y > 3000 and respawn.time_left == 0:
 		particles.emitting = true
-		shake.start(0.2, 30, 32)
+		shake.start(0.2/3, 10, 11)
 		explosion.play()
 		sprite.visible = false
 		respawn.start()
 	if dragState and can_jump:
 		if not jump.playing:
 			jump.play()
-		shake.start(0.1, 7.5, 8)
+		shake.start(0.1/3, 7.5/3, 8/3)
 		can_jump = false
 		direction.x = get_local_mouse_position().normalized().x * speed
 		direction.y = get_local_mouse_position().normalized().y * speed
@@ -72,7 +72,7 @@ func _physics_process(_delta):
 				bounce.emitting = true
 				bounce.restart()
 				bounce_timer.start()
-			shake.start(0.2, 15, 16)
+			shake.start(0.2/3, 15/3, 16/3)
 			direction = Vector2(0,0)
 		last_collision = collision.collider_id
 	else:
@@ -115,7 +115,6 @@ func _on_Respawn_timeout():
 
 func _on_checkpoint():
 	checkpoint.play()
-	$Label._on_checkpoint()
 
 
 func _on_EndPoint_body_entered(body):
