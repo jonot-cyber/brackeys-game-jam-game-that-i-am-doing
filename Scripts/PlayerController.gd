@@ -106,14 +106,16 @@ func _unhandled_input(event):
 
 
 func _on_Respawn_timeout():
+	$Camera.smoothing_enabled = false
 	reset()
 	get_node('..').active = 'red'
 	emit_signal('reset')
 	sprite.visible = true
+	$Camera.smoothing_enabled = true
 
 func _on_checkpoint():
 	checkpoint.play()
-	get_node("Label")._on_checkpoint()
+	$Label._on_checkpoint()
 
 
 func _on_EndPoint_body_entered(body):

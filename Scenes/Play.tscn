@@ -148,8 +148,8 @@ switch = "blue"
 position = Vector2( 41305, 732.689 )
 color = Color( 0.560784, 0.301961, 0.301961, 1 )
 [connection signal="reset" from="Player" to="TileMap" method="update_tiles"]
-[connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="switch" from="Player" to="TileMap" method="update_tiles"]
+[connection signal="switch" from="Player" to="." method="_on_Player_switch"]
 [connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_EndPoint_body_entered"]
 
 [editable path="Checkpoints/Checkpoint4"]
